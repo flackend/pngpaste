@@ -3,6 +3,7 @@
  */
 
 #import "pngpaste.h"
+#import "Base64.m"
 
 void
 usage ()
@@ -138,8 +139,9 @@ main (int argc, char * const argv[])
 {
     Parameters params = parseArguments(argc, argv);
     if (params.malformed) {
-        usage();
-        return EXIT_FAILURE;
+        // Not using output file
+        // usage();
+        // return EXIT_FAILURE;
     } else if (params.wantsUsage) {
         usage();
         return EXIT_SUCCESS;
@@ -155,7 +157,10 @@ main (int argc, char * const argv[])
     int exitCode;
 
     if (image && ((pngData = extractPngData(image)) != NULL)) {
-        [pngData writeToFile:params.outputFile atomically:YES];
+        // Encode as Base64
+        NSString *encoded = [Base64 encode:pngData];
+        // Output
+        printf("data:image/png;base64,%s", [encoded UTF8String]);
         exitCode = EXIT_SUCCESS;
     } else {
         fatal("No image data found on the clipboard!");
