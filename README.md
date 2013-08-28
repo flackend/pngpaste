@@ -1,27 +1,19 @@
-pngpaste
-========
+# pngpaste
 
-Paste PNG into files, much like `pbpaste` does for text.
+Forked from 
 
-However instead of `pngpaste > thefile.png`, it's `pngpaste thefile.png`,
-so one does not accidentally barf binary into the console.
+Uses [iPhone SDK base64 encode / decode](http://www.imthi.com/blog/programming/iphone-sdk-base64-encode-decode.php) library.
 
-### Motivation
+Converts clipboard image to base64 encoded string.
 
-[http://apple.stackexchange.com/q/11100/4795](http://apple.stackexchange.com/q/11100/4795)
-
-### Build
+## Build
 
     $ make all
 
-### Installation
+## Installation
 
     $ sudo make install
 
-### Usage
+## Usage
 
-    $ pngpaste hooray.png
-
-### Error Handling
-
-Minimal :'(
+    $ pngpaste | pbcopy
